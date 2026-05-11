@@ -12,10 +12,19 @@ export const projectItemConfig: ProjectItems[] = [
   },
   {
     projectName: "ShowTime",
-    description: "A cinematic streaming guide built with React featuring real-time movie search and a personalised watchlist to track your favourites.",
+    description:
+      "A cinematic streaming guide built with React featuring real-time movie search and a personalised watchlist to track your favourites.",
     projectImage: "showtime.png",
     githubLink: "https://github.com/Rishikapurbey/ShowTime",
     liveLink: "https://harmonious-maamoul-e4854c.netlify.app/",
-    techStack: ["React js", "JavaScript", "CSS","HTML"],
-},
+    techStack: ["React js", "JavaScript", "CSS", "HTML"],
+  },
+  {
+    projectName: "Pomodoro Timer",
+    description:
+      "A productivity timer built with React featuring work and break sessions, countdown timer, start/pause/reset controls, and session tracking.",
+    projectImage: "pomodoro-timer.png",
+    githubLink: "https://github.com/chopadkartanishka/100-reactjs-projects",
+    techStack: ["React js", "JavaScript", "CSS", "HTML"],
+  },
 ];
