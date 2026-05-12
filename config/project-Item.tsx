@@ -9,6 +9,7 @@ export const projectItemConfig: ProjectItems[] = [
     githubLink: "https://github.com/Vaibhav-kesarwani/sendly",
     liveLink: "https://sendlyfile.vercel.app/",
     techStack: ["Next.js", "TypeScript", "Tailwind", "Supabase", "Prisma"],
+    difficulty: "Advanced",
   },
   {
     projectName: "ShowTime",
@@ -18,6 +19,7 @@ export const projectItemConfig: ProjectItems[] = [
     githubLink: "https://github.com/Rishikapurbey/ShowTime",
     liveLink: "https://harmonious-maamoul-e4854c.netlify.app/",
     techStack: ["React js", "JavaScript", "CSS", "HTML"],
+    difficulty: "Intermediate",
   },
   {
     projectName: "Pomodoro Timer",
