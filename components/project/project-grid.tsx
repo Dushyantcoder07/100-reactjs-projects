@@ -105,10 +105,24 @@ export default function ProjectGrid() {
                 </button>
               </div>
 
-              <div className="relative p-6">
-                <h3 className="text-lg font-semibold tracking-tight text-start">
-                  {item.projectName}
-                </h3>
+              <div className="relative flex flex-col gap-4 p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-lg font-semibold tracking-tight text-start">
+                    {item.projectName}
+                  </h3>
+
+                  <span
+                   className={`rounded-full border px-3 py-1 text-xs font-medium whitespace-nowrap ${
+                     item.difficulty === "Beginner"
+                        ? "border-green-500/30 bg-green-500/10 text-green-400"
+                        : item.difficulty === "Intermediate"
+                        ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-400"
+                        : "border-red-500/30 bg-red-500/10 text-red-400"
+                    }`}
+                  >
+                    {item.difficulty}
+                  </span>
+                </div>  
 
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70 font-medium text-start line-clamp-2">
                   {item.description}
