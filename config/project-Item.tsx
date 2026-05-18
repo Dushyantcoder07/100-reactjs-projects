@@ -40,4 +40,13 @@ export const projectItemConfig: ProjectItems[] = [
     techStack: ["React js", "TypeScript", "CSS", "Vite"],
     difficulty: "Beginner",
   },
+  {
+    projectName: "SplitSmart",
+    description: "Split bills equally, by item, or by percentage. Features AI bill parsing, group management, history tracking, and localStorage persistence.",
+    projectImage: "splitsmart.png",
+    githubLink: "https://github.com/ParthBhuptani/splitsmart",
+    liveLink: "https://splitsmart-expense.vercel.app",
+    techStack: ["React js", "Tailwind css", "TypeScript"],
+    difficulty: "Intermediate"
+  },
 ];
