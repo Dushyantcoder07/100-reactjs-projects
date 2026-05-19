@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { FaGithub, FaLink, FaSearch, FaYoutube , FaBookmark} from "react-icons/fa";
 import SearchBar from "./search-bar";
+import { FadeIn, StaggerContainer, StaggerItem } from "../utils/page-reveal";
 
 export default function ProjectGrid() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,9 +61,11 @@ export default function ProjectGrid() {
 
   return (
     <div className="mt-15">
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <FadeIn delay={0.05}>
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      </FadeIn>
 
-        <div className="mt-6 mb-8 flex items-center gap-4">
+        <FadeIn delay={0.12} className="mt-6 mb-8 flex items-center gap-4">
           <button
             onClick={() => setShowFavorites((prev) => !prev)}
             aria-pressed={showFavorites}
@@ -76,13 +79,14 @@ export default function ProjectGrid() {
             <FaBookmark aria-hidden="true" />
             {showFavorites ? "Show All" : "Show Favorites"}
           </button>
-        </div>
+        </FadeIn>
 
       {filteredProjects.length > 0 ? (
-        <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((item, index) => (
-            <div
+            <StaggerItem
               key={index}
+              delay={0.04 + index * 0.05}
               className="group relative overflow-hidden rounded-2xl border border-border backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
             >
               <div className="relative aspect-video overflow-hidden">
@@ -184,22 +188,22 @@ export default function ProjectGrid() {
                   )}
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       ) : (
-        <div className="flex flex-col items-center justify-center py-16 text-center">
+        <FadeIn className="flex flex-col items-center justify-center py-16 text-center">
           <FaSearch
-  aria-hidden="true"
-  className="mb-4 text-4xl text-foreground/50"
-/>
+            aria-hidden="true"
+            className="mb-4 text-4xl text-foreground/50"
+          />
           <h3 className="text-lg font-semibold">
             {projectConfig.notFound.title}
           </h3>
           <p className="mt-1 text-sm text-muted-foreground">
             {projectConfig.notFound.description}
           </p>
-        </div>
+        </FadeIn>
       )}
     </div>
   );

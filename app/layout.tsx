@@ -1,6 +1,7 @@
 import Container from "@/components/common/container";
 import Navbar from "@/components/common/navbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { PageEnter } from "@/components/utils/page-reveal";
 import { ThemeProvider } from "@/components/utils/theme-provider";
 import { generateMetadata as getMetadata } from "@/config/meta";
 import "@/styles/globals.css";
@@ -36,7 +37,7 @@ export default function RootLayout({
             <TooltipProvider>
               <Container className="min-h-screen py-6">
                 <Navbar />
-                {children}
+                <PageEnter>{children}</PageEnter>
               </Container>
               <Toaster richColors position="top-right" />
             </TooltipProvider>

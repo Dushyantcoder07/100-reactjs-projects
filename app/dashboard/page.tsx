@@ -1,16 +1,22 @@
+import { FadeIn } from "@/components/utils/page-reveal";
+
 export default function Dashboard() {
   return (
     <section className="mt-20 relative flex min-h-screen items-center justify-center overflow-hidden px-4 text-center">
       <div className="relative z-10 mx-auto max-w-5xl">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          Dashboard for Developers
-        </h1>
+        <FadeIn delay={0.05}>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            Dashboard for Developers
+          </h1>
+        </FadeIn>
 
-        <p className="mt-4 md:mt-6 text-sm md:text-xl text-foreground/60 max-w-2xl mx-auto">
-          Welcome to the central hub of the 100+ React JS Projects platform.
-          Explore curated projects, track your progress, and discover real-world
-          applications built with React and Next.js.
-        </p>
+        <FadeIn delay={0.14}>
+          <p className="mt-4 md:mt-6 text-sm md:text-xl text-foreground/60 max-w-2xl mx-auto">
+            Welcome to the central hub of the 100+ React JS Projects platform.
+            Explore curated projects, track your progress, and discover real-world
+            applications built with React and Next.js.
+          </p>
+        </FadeIn>
       </div>
     </section>
   );
