@@ -1,11 +1,19 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { projectConfig } from "@/config/projects";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { FaBookmark, FaChevronDown, FaGithub, FaLink, FaSearch, FaYoutube } from "react-icons/fa";
+import {
+  FaBookmark,
+  FaChevronDown,
+  FaGithub,
+  FaLink,
+  FaSearch,
+  FaYoutube,
+} from "react-icons/fa";
 import SearchBar from "./search-bar";
 import { FadeIn, StaggerContainer, StaggerItem } from "../utils/page-reveal";
 
@@ -19,11 +27,11 @@ export default function ProjectGrid() {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   useEffect(() => {
-     const storedFavorites = localStorage.getItem("favoriteProjects");
+    const storedFavorites = localStorage.getItem("favoriteProjects");
 
-     if (storedFavorites) {
-       setFavorites(JSON.parse(storedFavorites));
-     }
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
   }, []);
 
   // Reset visible count when filters change
@@ -32,22 +40,17 @@ export default function ProjectGrid() {
   }, [searchQuery, showFavorites]);
 
   const toggleFavorite = (projectName: string) => {
-     let updatedFavorites: string[];
+    let updatedFavorites: string[];
 
-     if (favorites.includes(projectName)) {
-        updatedFavorites = favorites.filter(
-          (item) => item !== projectName
-        );
-     } else {
-        updatedFavorites = [...favorites, projectName];
-     }
+    if (favorites.includes(projectName)) {
+      updatedFavorites = favorites.filter((item) => item !== projectName);
+    } else {
+      updatedFavorites = [...favorites, projectName];
+    }
 
     setFavorites(updatedFavorites);
 
-    localStorage.setItem(
-      "favoriteProjects",
-      JSON.stringify(updatedFavorites)
-    );
+    localStorage.setItem("favoriteProjects", JSON.stringify(updatedFavorites));
   };
 
   const filteredProjects = useMemo(() => {
@@ -57,16 +60,16 @@ export default function ProjectGrid() {
       const matchesSearch =
         item.projectName.toLowerCase().includes(query) ||
         item.description.toLowerCase().includes(query) ||
-        (item.techStack && 
-          item.techStack.some((tech: string) => 
-            tech.toLowerCase().includes(query)
-        ));
+        (item.techStack &&
+          item.techStack.some((tech: string) =>
+            tech.toLowerCase().includes(query),
+          ));
 
-    const matchesFavorites =
-       !showFavorites || favorites.includes(item.projectName);
+      const matchesFavorites =
+        !showFavorites || favorites.includes(item.projectName);
 
-    return matchesSearch && matchesFavorites;
-    });  
+      return matchesSearch && matchesFavorites;
+    });
   }, [searchQuery, favorites, showFavorites]);
 
   const visibleProjects = filteredProjects.slice(0, visibleCount);
@@ -81,7 +84,7 @@ export default function ProjectGrid() {
     }, 400);
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 28, scale: 0.97 },
     visible: (i: number) => ({
       opacity: 1,
@@ -116,6 +119,23 @@ export default function ProjectGrid() {
             {showFavorites ? "Show All" : "Show Favorites"}
           </button>
         </FadeIn>
+      <div className="mt-6 mb-8 flex items-center gap-4">
+        <button
+          onClick={() => setShowFavorites((prev) => !prev)}
+          aria-pressed={showFavorites}
+          aria-label={
+            showFavorites ? "Show all projects" : "Show favorite projects only"
+          }
+          className={`flex items-center gap-2 px-4 py-2 rounded-md border ${
+            showFavorites
+              ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-400"
+              : "border-border bg-background text-foreground hover:bg-muted"
+          } transition-colors duration-300 hover:bg-primary/10`}
+        >
+          <FaBookmark aria-hidden="true" />
+          {showFavorites ? "Show All" : "Show Favorites"}
+        </button>
+      </div>
 
       {filteredProjects.length > 0 ? (
         <StaggerContainer className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
@@ -160,7 +180,11 @@ export default function ProjectGrid() {
                   variants={cardVariants}
                   initial="hidden"
                   animate="visible"
-                  exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.95,
+                    transition: { duration: 0.2 },
+                  }}
                   layout
                   className="group relative overflow-hidden rounded-2xl border border-border backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10"
                 >
@@ -201,18 +225,18 @@ export default function ProjectGrid() {
                       </h3>
 
                       <span
-                       aria-label={`Difficulty level: ${item.difficulty}`}
+                        aria-label={`Difficulty level: ${item.difficulty}`}
                         className={`rounded-full border px-3 py-1 text-xs font-medium whitespace-nowrap ${
-                         item.difficulty === "Beginner"
+                          item.difficulty === "Beginner"
                             ? "border-green-500/30 bg-green-500/10 text-green-400"
                             : item.difficulty === "Intermediate"
-                            ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-400"
-                            : "border-red-500/30 bg-red-500/10 text-red-400"
-                          }`}
+                              ? "border-yellow-500/30 bg-yellow-500/10 text-yellow-400"
+                              : "border-red-500/30 bg-red-500/10 text-red-400"
+                        }`}
                       >
                         {item.difficulty}
                       </span>
-                    </div>  
+                    </div>
 
                     <p className="mt-2 text-sm leading-relaxed text-foreground/70 font-medium text-start line-clamp-2">
                       {item.description}
