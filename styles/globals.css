@@ -343,4 +343,16 @@
       transform: scale(1);
     }
   }
+
+  /* Page entry animation - simple fade + slight upward motion */
+  .entry {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 420ms cubic-bezier(.2,.9,.2,1), transform 420ms cubic-bezier(.2,.9,.2,1);
+  }
+
+  .entry.entered {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -2,7 +2,7 @@
 
 import type { MouseEvent } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/utils/theme-provider";
 
 import { Button } from "@/components/ui/button";
 
